@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes, { object } from "prop-types";
 
 // export const AddCategorie = ({setCategories}) => {
 export const AddCategorie = ({ onNewCategory }) => {
@@ -8,7 +9,7 @@ export const AddCategorie = ({ onNewCategory }) => {
     setInputValue(ev.target.value); // udp input value
   };
 
-  // evento aociado al formulario
+  // evento asociado al formulario, cuando se presiona enter
   const onSubmit = (ev) => {
     ev.preventDefault();
     if (inputValue.trim().length < 1) return;
@@ -25,7 +26,7 @@ export const AddCategorie = ({ onNewCategory }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} aria-label="form">
       <input
         type="text"
         placeholder="search gifs ... "
@@ -34,4 +35,8 @@ export const AddCategorie = ({ onNewCategory }) => {
       />
     </form>
   );
+};
+
+AddCategorie.propTypes = {
+  onNewCategory: PropTypes.func.isRequired,
 };

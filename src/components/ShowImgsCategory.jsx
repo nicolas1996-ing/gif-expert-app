@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes, { object } from "prop-types"
 
 export const ShowImgsCategory = ({ imageInfo }) => {
   return (
@@ -10,3 +11,7 @@ export const ShowImgsCategory = ({ imageInfo }) => {
     </>
   );
 };
+
+ShowImgsCategory.propTypes = {
+  imageInfo: PropTypes.object.isRequired
+}
