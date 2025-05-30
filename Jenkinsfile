@@ -32,6 +32,7 @@ pipeline {
       }
     }
 
+    // Pruebas en Paralelo
     stage('Pruebas en Paralelo') {
       parallel {
         // Pruebas en Chrome
