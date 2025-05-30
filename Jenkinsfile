@@ -16,6 +16,7 @@ pipeline {
             sh 'npm install'
             sh 'npm install --save-dev jest-junit'
             sh 'npm run build'
+            sh 'ls -l builds'
         }
     }
 
@@ -93,7 +94,7 @@ pipeline {
         script {
           // Crear carpeta "prod" y copiar build
           sh 'mkdir -p prod'
-          sh 'cp -r build/* prod/'
+          sh 'cp -r dist/* prod/'
           echo "¡Deploy simulado exitoso! Archivos copiados a /prod"
         }
       }
