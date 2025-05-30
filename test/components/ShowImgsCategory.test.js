@@ -15,7 +15,7 @@ describe("test on ShowImgsCategory", () => {
 
   test("should show the img with the correct url and alt property", () => {
     render(<ShowImgsCategory imageInfo={img} />);
-    // screen.debug(undefined, Infinity); // print component render html
+    // //screen.debug(undefined, Infinity); // print component render html
 
     expect(screen.getByRole("img").src).toBe(`http://localhost/${img.url}`);
     expect(screen.getByRole("img").alt).toBe(img.url);
@@ -23,7 +23,7 @@ describe("test on ShowImgsCategory", () => {
 
   test("should show the img with the correct url and alt property form 2", () => {
     render(<ShowImgsCategory imageInfo={img} />);
-    screen.debug(undefined, Infinity); // print component render html
+    // //screen.debug(undefined, Infinity); // print component render html
 
     const { src, alt } = screen.getByRole("img");
     expect(src).toBe(`http://localhost/${img.url}`);

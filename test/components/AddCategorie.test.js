@@ -5,12 +5,12 @@ describe("test on AddCategoryComponent", () => {
   const valueInput = "new value";
   test("should be change the box text value", () => {
     const container = render(<AddCategorie onNewCategory={() => {}} />);
-    screen.debug(undefined, Infinity); // sujeto de prueba
+    //screen.debug(undefined, Infinity); // sujeto de prueba
 
     // disparar un evento
     const input = screen.getByRole("textbox"); // input
     fireEvent.input(input, { target: { value: valueInput } }); // lanzar el event
-    screen.debug(undefined, Infinity); // sujeto de prueba
+    //screen.debug(undefined, Infinity); // sujeto de prueba
 
     // test
     expect(input.value).toBe(valueInput);
@@ -26,11 +26,11 @@ describe("test on AddCategoryComponent", () => {
 
     // cambiar el valor del input
     fireEvent.input(input, { target: { value: inputValue } });
-    screen.debug();
+    //screen.debug();
 
     // dispara el submit del formulario
     fireEvent.submit(form);
-    screen.debug(); // should be:  setInputValue("");
+    //screen.debug(); // should be:  setInputValue("");
 
     // test
     expect(input.value).toBe("");
