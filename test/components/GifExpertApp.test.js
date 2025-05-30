@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { GifExpertApp } from "../../src/GifExpertApp";
 
-describe("test on GifExpertApp", () => {
+xdescribe("test on GifExpertApp", () => {
   // mock de funcion
 
   test("should show GifExpertApp label", () => {

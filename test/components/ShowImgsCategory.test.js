@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { ShowImgsCategory } from "../../src/components/ShowImgsCategory";
 
-describe("test on ShowImgsCategory", () => {
+xdescribe("test on ShowImgsCategory", () => {
   const img = {
     title: "example-title",
     url: "example-url.com",

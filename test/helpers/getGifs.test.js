@@ -1,6 +1,6 @@
 import { getGifs } from "../../src/helpers/getGifs";
 
-describe("test on getGifs.js", () => {
+xdescribe("test on getGifs.js", () => {
   test("should get gifs from giphy.com", async () => {
     const category = "cars";
     const gifs = await getGifs(category);

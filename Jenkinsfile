@@ -77,7 +77,8 @@ pipeline {
       steps {
         script {
           // Crear carpeta "prod" y copiar build
-          sh 'mkdir -p prod && cp -r build/* prod/'
+          sh 'mkdir -p prod'
+          sh 'cp -r build/* prod/'
           echo "¡Deploy simulado exitoso! Archivos copiados a /prod"
         }
       }
