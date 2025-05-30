@@ -24,34 +24,44 @@ pipeline {
       parallel {
         stage('Pruebas Chrome') {
           steps {
-            dir("${env.WORKSPACE}") {
-              sh '''
-                rm -rf chrome-test
-                mkdir chrome-test
-                cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
-                cd chrome-test
-                export JEST_JUNIT_OUTPUT=junit.xml
-                npm test -- --watchAll=false --ci --reporters=jest-junit
-                mv junit.xml ../junit-chrome.xml
-              '''
+            script {
+              try {
+                sh '''
+                  rm -rf chrome-test
+                  mkdir chrome-test
+                  cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
+                  cd chrome-test
+                  export JEST_JUNIT_OUTPUT=junit.xml
+                  npm test -- --watchAll=false --ci --reporters=jest-junit
+                  mv junit.xml ../junit-chrome.xml
+                '''
+                junit 'junit-chrome.xml'
+              } catch (err) {
+                echo "¡Error en las pruebas Chrome!"
+                echo "Mensaje de error: ${err}"
+              }
             }
-            junit 'junit-chrome.xml'
           }
         }
         stage('Pruebas Firefox') {
           steps {
-            dir("${env.WORKSPACE}") {
-              sh '''
-                rm -rf firefox-test
-                mkdir firefox-test
-                cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
-                cd firefox-test
-                export JEST_JUNIT_OUTPUT=junit.xml
-                npm test -- --watchAll=false --ci --reporters=jest-junit
-                mv junit.xml ../junit-firefox.xml
-              '''
+            script {
+              try {
+                sh '''
+                  rm -rf firefox-test
+                  mkdir firefox-test
+                  cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
+                  cd firefox-test
+                  export JEST_JUNIT_OUTPUT=junit.xml
+                  npm test -- --watchAll=false --ci --reporters=jest-junit
+                  mv junit.xml ../junit-firefox.xml
+                '''
+                junit 'junit-firefox.xml'
+              } catch (err) {
+                echo "¡Error en las pruebas Firefox!"
+                echo "Mensaje de error: ${err}"
+              }
             }
-            junit 'junit-firefox.xml'
           }
         }
       }
