@@ -28,7 +28,8 @@ pipeline {
             script {
               try {
                 sh '''
-                  mkdir -p chrome-test
+                  rm -rf chrome-test
+                  mkdir chrome-test
                   cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
                   cd chrome-test
                   export JEST_JUNIT_OUTPUT=junit.xml && npm test -- --watchAll=false --ci --reporters=jest-junit
@@ -46,28 +47,28 @@ pipeline {
           }
         }
         // Pruebas en Firefox
-        // stage('Pruebas Firefox') {
-        //   steps {
-        //     script {
-        //       try {
-        //         sh '''
-        //           mkdir -p firefox-test
-        //           cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
-        //           cd firefox-test
-        //           export JEST_JUNIT_OUTPUT=junit.xml && npm test -- --watchAll=false --ci --reporters=jest-junit
-        //           mv junit.xml ../junit-firefox.xml
-        //         '''
-        //         sh 'ls -l'
-        //         sh 'find . -name "junit*.xml"'
-        //         sh 'cat junit-firefox.xml || echo "No se generó junit-firefox.xml"'
-        //         junit 'junit-firefox.xml'
-        //       } catch (err) {
-        //         echo "Pruebas en Firefox fallaron: ${err}"
-        //         currentBuild.result = 'UNSTABLE'
-        //       }
-        //     }
-        //   }
-        // }
+        stage('Pruebas Firefox') {
+          steps {
+            script {
+              try {
+                sh '''
+                  mkdir -p firefox-test
+                  cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
+                  cd firefox-test
+                  export JEST_JUNIT_OUTPUT=junit.xml && npm test -- --watchAll=false --ci --reporters=jest-junit
+                  mv junit.xml ../junit-firefox.xml
+                '''
+                sh 'ls -l'
+                sh 'find . -name "junit*.xml"'
+                sh 'cat junit-firefox.xml || echo "No se generó junit-firefox.xml"'
+                junit 'junit-firefox.xml'
+              } catch (err) {
+                echo "Pruebas en Firefox fallaron: ${err}"
+                currentBuild.result = 'UNSTABLE'
+              }
+            }
+          }
+        }
       }
     }
 
