@@ -4,7 +4,7 @@ import { useFetchGifs } from "../../src/hooks/useFetchGifs";
 
 jest.mock("../../src/hooks/useFetchGifs"); // paso 1. mock
 
-xdescribe("test on GifGrid", () => {
+describe("test on GifGrid", () => {
   const category = "one-punch";
   const gifsMock = [
     {
