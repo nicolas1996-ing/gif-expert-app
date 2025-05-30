@@ -29,7 +29,7 @@ pipeline {
               try {
                 sh '''
                   mkdir -p chrome-test
-                  cp -r node_modules src public test jest.config.js package.json package-lock.json chrome-test/
+                  cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
                   cd chrome-test
                   export JEST_JUNIT_OUTPUT=junit.xml && npm test -- --watchAll=false --ci --reporters=jest-junit
                   mv junit.xml ../junit-chrome.xml
@@ -52,7 +52,7 @@ pipeline {
               try {
                 sh '''
                   mkdir -p firefox-test
-                  cp -r node_modules src public test jest.config.js package.json package-lock.json firefox-test/
+                  cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
                   cd firefox-test
                   export JEST_JUNIT_OUTPUT=junit.xml && npm test -- --watchAll=false --ci --reporters=jest-junit
                   mv junit.xml ../junit-firefox.xml
