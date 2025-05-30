@@ -16,7 +16,7 @@ pipeline {
             sh 'npm install'
             sh 'npm install --save-dev jest-junit'
             sh 'npm run build'
-            sh 'ls -l builds'
+            sh 'ls -l build'
         }
     }
 
