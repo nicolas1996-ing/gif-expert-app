@@ -7,7 +7,7 @@ pipeline {
     // Etapa 1: Checkout
     stage('Checkout') {
         steps {
-            git branch: 'main', url: 'https://github.com/nicolas1996-ing/ucp-app.git'
+            git branch: 'main', url: 'https://github.com/nicolas1996-ing/gif-expert-app'
         }
     }
 
