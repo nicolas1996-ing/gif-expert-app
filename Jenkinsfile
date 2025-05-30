@@ -20,6 +20,18 @@ pipeline {
         }
     }
 
+    stage('Pruebas Unitarias') {
+      steps {
+        sh 'npm test -- --watchAll=false --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnit
+      }
+      post {
+        always {
+          junit 'junit.xml' // Publica reporte en Jenkins
+          archiveArtifacts artifacts: 'junit.xml', allowEmptyArchive: true
+        }
+      }
+    }
+
     // Etapa 3: Pruebas Paralelizadas
     // stage('Pruebas en Paralelo') {
     //   parallel {
