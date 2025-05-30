@@ -32,7 +32,8 @@ pipeline {
                   mkdir chrome-test
                   cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
                   cd chrome-test
-                  export JEST_JUNIT_OUTPUT=junit.xml && npm test -- --watchAll=false --ci --reporters=jest-junit
+                  export JEST_JUNIT_OUTPUT=junit.xml
+                  npm test -- --watchAll=false --ci --reporters=jest-junit
                   mv junit.xml ../junit-chrome.xml
                 '''
                 sh 'ls -l'
