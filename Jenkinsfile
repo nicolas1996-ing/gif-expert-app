@@ -10,8 +10,6 @@ pipeline {
             git branch: 'main', url: 'https://github.com/nicolas1996-ing/gif-expert-app.git'
         }
     }
-
-
     // Etapa 2: Build
     stage('Build') {
         steps {
