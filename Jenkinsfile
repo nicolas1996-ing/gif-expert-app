@@ -27,16 +27,20 @@ pipeline {
             script {
               try {
                 dir("${env.WORKSPACE}") {
-                  sh '''
-                    ls -l jest.config.js jest.setup.js package.json package-lock.json
-                    rm -rf chrome-test
-                    mkdir chrome-test
-                    cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
-                    cd chrome-test
-                    export JEST_JUNIT_OUTPUT=junit.xml
-                    npm test -- --watchAll=false --ci --reporters=jest-junit
-                    mv junit.xml ../junit-chrome.xml
-                  '''
+                  def output = sh(
+                    script: '''
+                      ls -l jest.config.js jest.setup.js package.json package-lock.json
+                      rm -rf chrome-test
+                      mkdir chrome-test
+                      cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json chrome-test/
+                      cd chrome-test
+                      export JEST_JUNIT_OUTPUT=junit.xml
+                      npm test -- --watchAll=false --ci --reporters=jest-junit
+                      mv junit.xml ../junit-chrome.xml
+                    ''',
+                    returnStdout: true
+                  )
+                  echo output
                 }
                 junit 'junit-chrome.xml'
               } catch (err) {
@@ -51,16 +55,20 @@ pipeline {
             script {
               try {
                 dir("${env.WORKSPACE}") {
-                  sh '''
-                    ls -l jest.config.js jest.setup.js package.json package-lock.json
-                    rm -rf firefox-test
-                    mkdir firefox-test
-                    cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
-                    cd firefox-test
-                    export JEST_JUNIT_OUTPUT=junit.xml
-                    npm test -- --watchAll=false --ci --reporters=jest-junit
-                    mv junit.xml ../junit-firefox.xml
-                  '''
+                  def output = sh(
+                    script: '''
+                      ls -l jest.config.js jest.setup.js package.json package-lock.json
+                      rm -rf firefox-test
+                      mkdir firefox-test
+                      cp -r node_modules src public test jest.config.js jest.setup.js package.json package-lock.json firefox-test/
+                      cd firefox-test
+                      export JEST_JUNIT_OUTPUT=junit.xml
+                      npm test -- --watchAll=false --ci --reporters=jest-junit
+                      mv junit.xml ../junit-firefox.xml
+                    ''',
+                    returnStdout: true
+                  )
+                  echo output
                 }
                 junit 'junit-firefox.xml'
               } catch (err) {
