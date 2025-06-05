@@ -6,7 +6,7 @@ import { ShowImgsCategory } from "./ShowImgsCategory";
 
 export const GifGrid = ({ cat }) => {
   const { images, isLoading } = useFetchGifs(cat);
-  console.log(images);
+  // console.log(images);
 
   return (
     <div>

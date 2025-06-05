@@ -6,7 +6,7 @@ describe("test on useFetchFGifs hook", () => {
 
   test("should return the initial state", () => {
     const { result } = renderHook(() => useFetchGifs(category));
-    console.log(result); //  { current: { images: [], isLoading: true } }
+    // console.log(result); //  { current: { images: [], isLoading: true } }
 
     // evaluar el primer estado del hook, antes del llamado http
     const { images, isLoading } = result.current;

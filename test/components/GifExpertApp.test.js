@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { GifExpertApp } from "../../src/GifExpertApp";
+import React from "react";
 
 describe("test on GifExpertApp", () => {
   // mock de funcion

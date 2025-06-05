@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { ShowImgsCategory } from "../../src/components/ShowImgsCategory";
+import React from "react";
+
 
 describe("test on ShowImgsCategory", () => {
   const img = {

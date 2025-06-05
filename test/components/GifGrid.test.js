@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { GifGrid } from "../../src/components/GifGrid";
 import { useFetchGifs } from "../../src/hooks/useFetchGifs";
+import React from "react";
 
 jest.mock("../../src/hooks/useFetchGifs"); // paso 1. mock
 
@@ -32,7 +33,7 @@ describe("test on GifGrid", () => {
     });
 
     render(<GifGrid cat={category} />);
-    screen.debug(undefined, Infinity);
+    // screen.debug(undefined, Infinity);
 
     // test - estado inicial
     expect(screen.getByText("loading ...")); // buscar texto en el hmtl como ...

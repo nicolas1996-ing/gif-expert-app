@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { AddCategorie } from "../../src/components/AddCategorie";
+import React from "react";
 
 describe("test on AddCategoryComponent", () => {
   const valueInput = "new value";
